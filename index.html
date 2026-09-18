@@ -656,6 +656,14 @@
         let currentUser = localStorage.getItem('eran_user') || "rajesh46";
         let generatedOtp = "";
 
+        // Force check storage sync across app wrapper / WebViews
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'eran_coins') {
+                coins = parseInt(e.newValue) || 0;
+                updateCoinUI();
+            }
+        });
+
         updateCoinUI();
         updateHistoryUI();
 
@@ -680,6 +688,7 @@
         switchTab(savedTab, document.getElementById(navMapping[savedTab] || 'navHome'));
 
         function updateCoinUI() {
+            localStorage.setItem('eran_coins', coins);
             document.getElementById('coinCount').innerText = coins;
             document.getElementById('walletCoinCount').innerText = coins;
             
@@ -756,7 +765,6 @@
                 } else {
                     clearInterval(timer);
                     coins += 1;
-                    localStorage.setItem('eran_coins', coins);
                     updateCoinUI();
                     alert("🎉 Ad Complete! +1 Coin added. Opening game now!");
                     btn.disabled = false;
@@ -909,7 +917,6 @@
                 } else {
                     clearInterval(timer);
                     coins += 1;
-                    localStorage.setItem('eran_coins', coins);
                     updateCoinUI();
                     alert("🎉 Success! 1 Coin added to your wallet.");
                     btn.disabled = false;
@@ -981,7 +988,6 @@
                 } else {
                     clearInterval(timer);
                     coins += 1;
-                    localStorage.setItem('eran_coins', coins);
                     updateCoinUI();
                     alert("🎉 Success! 1 Coin added to your wallet.");
                     btn.disabled = false;
@@ -1016,7 +1022,6 @@
                 } else {
                     clearInterval(timer);
                     coins += 1;
-                    localStorage.setItem('eran_coins', coins);
                     updateCoinUI();
                     alert("🎉 Spin Successful! +1 Coin added to your wallet.");
                     btn.disabled = false;
@@ -1063,7 +1068,6 @@
                 return;
             }
             coins -= requiredCoins;
-            localStorage.setItem('eran_coins', coins);
             updateCoinUI();
             
             withdrawalHistory.unshift({ title: itemName, target: 'PayPal/GiftCard', status: 'Pending' });
