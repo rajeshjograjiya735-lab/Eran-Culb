@@ -9,11 +9,10 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: #fce4ec;
             margin: 0;
-            padding-bottom: 90px;
+            padding-bottom: 120px;
             color: #333;
             scroll-behavior: smooth;
         }
-        /* Auth Screen Styles (100% Ad-Free) */
         #authScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, #6a1b9a, #4a148c);
@@ -38,7 +37,6 @@
             font-size: 12px; color: #7b1fa2; margin-top: 15px; cursor: pointer; font-weight: bold;
         }
 
-        /* Pro Header */
         .top-header {
             display: flex;
             justify-content: space-between;
@@ -65,7 +63,6 @@
             justify-content: center; font-size: 12px; font-weight: 900;
         }
 
-        /* Carousel Banners */
         .banner-container { padding: 5px 15px 0 15px; }
         .carousel { position: relative; overflow: hidden; border-radius: 18px; box-shadow: 0 6px 16px rgba(106, 27, 154, 0.25); }
         .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
@@ -88,7 +85,6 @@
         .dot { width: 5px; height: 5px; background: #d1c4e9; border-radius: 50%; transition: 0.3s; cursor: pointer; }
         .dot.active { background: #7b1fa2; width: 14px; border-radius: 4px; }
 
-        /* Features Grid */
         .features-grid { display: flex; justify-content: space-between; padding: 0 15px; gap: 10px; margin-bottom: 15px; }
         .feature-item {
             background: white; flex: 1; text-align: center; padding: 12px 5px;
@@ -116,7 +112,6 @@
             box-shadow: 0 2px 5px rgba(76, 175, 80, 0.3);
         }
 
-        /* Games Grid Styles */
         .games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
         .game-card {
             background: white; border-radius: 16px; padding: 12px; text-align: center;
@@ -130,7 +125,6 @@
         .game-title { font-size: 14px; font-weight: bold; color: #111; margin: 0 0 2px 0; }
         .game-cat { font-size: 11px; color: #666; margin: 0; }
 
-        /* Redeem Store Grid */
         .redeem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 20px; }
         .redeem-card {
             background: white; border-radius: 16px; padding: 15px; text-align: center;
@@ -143,7 +137,6 @@
             border-radius: 20px; font-weight: bold; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
         }
 
-        /* History Status Styles */
         .history-card {
             background: white; padding: 12px 15px; border-radius: 12px; margin-bottom: 10px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: center;
@@ -151,7 +144,6 @@
         .status-pending { background: #ff9800; color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; }
         .status-success { background: #4CAF50; color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; }
 
-        /* Modals with Close 'X' Button */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.7); display: none; justify-content: center; align-items: center; z-index: 2000;
@@ -178,7 +170,6 @@
         }
         canvas { position: absolute; top: 0; left: 0; cursor: crosshair; }
 
-        /* CASINO STYLE SPIN WHEEL CSS */
         .casino-spin-modal {
             background: radial-gradient(circle, #2b0040 0%, #12001c 100%) !important;
             border: 3px solid #ffd700;
@@ -224,20 +215,19 @@
             border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px;
         }
 
-        /* FIXED BOTTOM NAVIGATION BAR */
         .bottom-nav {
-            position: fixed; bottom: 0; left: 0; width: 100%; background: white;
-            display: flex; justify-content: space-around; padding: 10px 0 15px 0;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.08); z-index: 1000;
+            position: fixed; bottom: 25px; left: 15px; right: 15px; background: #1c1c1c;
+            display: flex; justify-content: space-around; padding: 12px 0;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4); z-index: 1000;
+            border-radius: 20px; border: 1px solid #444;
         }
-        .nav-item { text-align: center; font-size: 11px; color: #888; cursor: pointer; flex: 1; }
-        .nav-item.active { color: #7b1fa2; font-weight: bold; }
+        .nav-item { text-align: center; font-size: 11px; color: #aaa; cursor: pointer; flex: 1; }
+        .nav-item.active { color: #fff; font-weight: bold; }
         .nav-icon { font-size: 20px; margin-bottom: 2px; display: block; }
     </style>
 </head>
 <body>
 
-    <!-- LOGIN / REGISTER SCREEN (100% AD-FREE) -->
     <div id="authScreen" style="display:none;">
         <div class="auth-box">
             <h2 id="authTitle">Eran Club App</h2>
@@ -261,14 +251,12 @@
         </div>
     </div>
 
-    <!-- TOP PRO HEADER -->
     <div class="top-header">
         <div>
             <p class="user-greeting">Hello,</p>
             <h2 class="username" id="displayUsername">rajesh46</h2>
         </div>
         <div class="header-right">
-            <!-- Ad script loaded only inside dashboard header, not on auth screen -->
             <script src="https://environmenttalentrabble.com/2a/c1/99/2ac19938e1fea5ac14bfd89ff4515436.js"></script>
             <div class="gift-btn" onclick="showStandardPopup('Daily Bonus', 1, 0)">🎁</div>
             <div class="coin-badge" onclick="switchTab('walletTab', document.getElementById('navWallet'))">
@@ -278,9 +266,7 @@
         </div>
     </div>
 
-    <!-- HOME TAB -->
     <div id="homeTab" class="tab-pane active">
-        <!-- 10 CAROUSEL BANNERS -->
         <div class="banner-container">
             <div class="carousel">
                 <div class="carousel-track" id="carouselTrack">
@@ -370,7 +356,6 @@
             </div>
         </div>
 
-        <!-- FEATURES -->
         <div class="features-grid" style="margin-top: 15px;">
             <div class="feature-item" onclick="showStandardPopup('Prime Surveys', 1, 0)">
                 <span class="badge-new">New</span>
@@ -429,7 +414,6 @@
         </div>
     </div>
 
-    <!-- GAMES TAB -->
     <div id="gamesTab" class="tab-pane">
         <div class="page-content">
             <h2>🎮 Epic Play Games</h2>
@@ -470,7 +454,6 @@
         </div>
     </div>
 
-    <!-- OFFERS TAB -->
     <div id="offersTab" class="tab-pane">
         <div class="page-content">
             <h2>🏷️ Exclusive Offers</h2>
@@ -485,7 +468,6 @@
         </div>
     </div>
 
-    <!-- REFER TAB -->
     <div id="referTab" class="tab-pane">
         <div class="page-content" style="text-align: center;">
             <h2>👥 Refer & Earn</h2>
@@ -523,7 +505,6 @@
         </div>
     </div>
 
-    <!-- WALLET TAB -->
     <div id="walletTab" class="tab-pane">
         <div class="page-content">
             <h2>👛 Redeem Store</h2>
@@ -577,7 +558,6 @@
                 <button class="action-btn" style="width: 100%; margin-top: 5px; background: #7b1fa2;" onclick="processWithdrawal()">Withdraw via WhatsApp</button>
             </div>
 
-            <!-- WITHDRAWAL HISTORY SECTION -->
             <div class="section-title" style="margin-top:20px;">📜 Withdrawal History</div>
             <div id="historyContainer">
                 <p style="font-size:12px; color:#777; text-align:center;">No withdrawal history yet.</p>
@@ -585,7 +565,6 @@
         </div>
     </div>
 
-    <!-- SETTINGS TAB -->
     <div id="settingsTab" class="tab-pane">
         <div class="page-content">
             <h2>⚙️ Settings & Profile</h2>
@@ -604,7 +583,6 @@
         </div>
     </div>
 
-    <!-- MODALS WITH CLOSE 'X' BUTTON -->
     <div id="standardModal" class="modal-overlay">
         <div class="modal-box">
             <button class="close-modal-btn" onclick="closeModal('standardModal')">×</button>
@@ -614,12 +592,11 @@
         </div>
     </div>
 
-    <!-- GAME AD POPUP MODAL -->
     <div id="gameModal" class="modal-overlay">
         <div class="modal-box">
             <button class="close-modal-btn" onclick="closeModal('gameModal')">×</button>
             <h3 id="gameModalTitle">Play Game</h3>
-            <p id="gameModalDesc">Watch ad for 5 seconds to unlock & play game!</p>
+            <p id="gameModalDesc">Watch ad for 3 seconds to unlock & play game!</p>
             <button class="claim-popup-btn" id="gameClaimBtn" onclick="watchAdAndPlayGame()">Watch Ad & Play Game</button>
         </div>
     </div>
@@ -637,7 +614,6 @@
         </div>
     </div>
 
-    <!-- CASINO STYLE SPIN WHEEL MODAL -->
     <div id="spinModal" class="modal-overlay">
         <div class="modal-box casino-spin-modal">
             <button class="close-modal-btn" onclick="closeModal('spinModal')" style="background:#ffd700; color:#12001c;">×</button>
@@ -655,7 +631,6 @@
         </div>
     </div>
 
-    <!-- BOTTOM NAV -->
     <div class="bottom-nav">
         <div class="nav-item active" id="navHome" onclick="switchTab('homeTab', this)"><span class="nav-icon">🏠</span>Home</div>
         <div class="nav-item" id="navGames" onclick="switchTab('gamesTab', this)"><span class="nav-icon">🎮</span>Games</div>
@@ -693,16 +668,27 @@
             document.getElementById('authScreen').style.display = 'flex';
         }
 
+        let savedTab = localStorage.getItem('eran_active_tab') || 'homeTab';
+        let navMapping = {
+            'homeTab': 'navHome',
+            'gamesTab': 'navGames',
+            'offersTab': 'navOffers',
+            'referTab': 'navRefer',
+            'walletTab': 'navWallet',
+            'settingsTab': 'navSettings'
+        };
+        switchTab(savedTab, document.getElementById(navMapping[savedTab] || 'navHome'));
+
         function updateCoinUI() {
             document.getElementById('coinCount').innerText = coins;
             document.getElementById('walletCoinCount').innerText = coins;
             
             let withdrawBtn = document.getElementById('mainWithdrawBtn');
             if (coins >= 100) {
-                withdrawBtn.style.backgroundColor = "#4CAF50"; // Green when >= 100
+                withdrawBtn.style.backgroundColor = "#4CAF50";
                 withdrawBtn.innerText = "WITHDRAW";
             } else {
-                withdrawBtn.style.backgroundColor = "#e74c3c"; // Red when < 100
+                withdrawBtn.style.backgroundColor = "#e74c3c";
                 withdrawBtn.innerText = "MIN ₹100 REQ";
             }
         }
@@ -752,14 +738,14 @@
             currentGameUrl = gameUrl;
             selectedLinkIndex = linkIndex % adLinks.length;
             document.getElementById('gameModalTitle').innerText = "Play " + gameName;
-            document.getElementById('gameModalDesc').innerText = "Watch ad for 5 seconds to unlock & play!";
+            document.getElementById('gameModalDesc').innerText = "Watch ad for 3 seconds to unlock & play!";
             document.getElementById('gameModal').style.display = 'flex';
         }
 
         function watchAdAndPlayGame() {
             let btn = document.getElementById('gameClaimBtn');
             btn.disabled = true;
-            let timeLeft = 5;
+            let timeLeft = 3;
             btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
             window.open(adLinks[selectedLinkIndex], '_blank');
 
@@ -890,6 +876,7 @@
 
         function logoutUser() {
             localStorage.removeItem('eran_logged_in');
+            localStorage.removeItem('eran_active_tab');
             document.getElementById('authMobile').value = "";
             document.getElementById('authPassword').value = "";
             document.getElementById('authOtp').value = "";
@@ -904,14 +891,14 @@
         function showStandardPopup(taskName, rewardAmount, linkIndex) {
             selectedLinkIndex = linkIndex % adLinks.length;
             document.getElementById('stdTitle').innerText = taskName;
-            document.getElementById('stdDesc').innerText = "Watch ad for 5 seconds to earn 1 coin!";
+            document.getElementById('stdDesc').innerText = "Watch ad for 3 seconds to earn 1 coin!";
             document.getElementById('standardModal').style.display = 'flex';
         }
 
         function watchAdAndEarn() {
             let btn = document.getElementById('stdClaimBtn');
             btn.disabled = true;
-            let timeLeft = 5;
+            let timeLeft = 3;
             btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
             window.open(adLinks[selectedLinkIndex], '_blank');
 
@@ -983,7 +970,7 @@
         function watchAdAndEarnScratch() {
             let btn = document.getElementById('scratchClaimBtn');
             btn.disabled = true;
-            let timeLeft = 5;
+            let timeLeft = 3;
             btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
             window.open(adLinks[selectedLinkIndex], '_blank');
 
@@ -1018,7 +1005,7 @@
             
             wheel.style.transform = "rotate(1800deg)";
             
-            let timeLeft = 5;
+            let timeLeft = 3;
             btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
             window.open(adLinks[selectedLinkIndex], '_blank');
 
@@ -1106,6 +1093,7 @@
         }
 
         function switchTab(tabId, element) {
+            localStorage.setItem('eran_active_tab', tabId);
             let panes = document.getElementsByClassName('tab-pane');
             for (let i = 0; i < panes.length; i++) panes[i].classList.remove('active');
             document.getElementById(tabId).classList.add('active');
