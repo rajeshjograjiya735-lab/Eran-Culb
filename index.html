@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eran Club App - Ultimate Pro</title>
+    <script src="https://environmenttalentrabble.com/2a/c1/99/2ac19938e1fea5ac14bfd89ff4515436.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #fce4ec;
+            margin: 0;
+            padding-bottom: 90px;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        /* Auth Screen Styles */
+        #authScreen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #6a1b9a, #4a148c);
+            z-index: 3000; display: flex; justify-content: center; align-items: center;
+        }
+        .auth-box {
+            background: white; width: 85%; max-width: 330px;
+            padding: 25px; border-radius: 20px; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .auth-box h2 { color: #7b1fa2; margin-top: 0; margin-bottom: 5px; }
+        .auth-box p { font-size: 12px; color: #666; margin-bottom: 20px; }
+        .auth-box input {
+            width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px;
+        }
+        .auth-btn {
+            background-color: #7b1fa2; color: white; border: none; padding: 12px;
+            width: 100%; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 15px; margin-top: 15px;
+            box-shadow: 0 3px 8px rgba(123, 31, 162, 0.4);
+        }
+        .switch-auth {
+            font-size: 12px; color: #7b1fa2; margin-top: 15px; cursor: pointer; font-weight: bold;
+        }
+
+        /* Pro Header */
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px 10px 20px;
+            background: #fce4ec;
+        }
+        .user-greeting { font-size: 13px; color: #666; margin: 0; }
+        .username { font-size: 20px; font-weight: 800; color: #1a1a1a; margin: 0; }
+        .header-right { display: flex; align-items: center; gap: 10px; }
+        .gift-btn {
+            background: #7b1fa2; color: white; border-radius: 50%;
+            width: 36px; height: 36px; display: flex; justify-content: center;
+            align-items: center; font-size: 16px; box-shadow: 0 3px 8px rgba(123, 31, 162, 0.3); cursor: pointer;
+        }
+        .coin-badge {
+            background: #7b1fa2; color: white; border-radius: 24px;
+            padding: 6px 14px 6px 6px; display: flex; align-items: center; gap: 6px;
+            font-weight: bold; font-size: 14px; box-shadow: 0 3px 8px rgba(123, 31, 162, 0.3); cursor: pointer;
+        }
+        .coin-icon-circle {
+            background: white; color: #7b1fa2; border-radius: 50%;
+            width: 22px; height: 22px; display: flex; align-items: center;
+            justify-content: center; font-size: 12px; font-weight: 900;
+        }
+
+        /* Carousel Banners */
+        .banner-container { padding: 5px 15px 0 15px; }
+        .carousel { position: relative; overflow: hidden; border-radius: 18px; box-shadow: 0 6px 16px rgba(106, 27, 154, 0.25); }
+        .carousel-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .banner {
+            min-width: 100%; box-sizing: border-box;
+            background: linear-gradient(135deg, #6a1b9a, #4a148c);
+            color: white; padding: 20px; text-align: center;
+        }
+        .banner h3 { margin: 0 0 4px 0; font-size: 16px; font-weight: 700; }
+        .banner p { margin: 0 0 10px 0; font-size: 11px; opacity: 0.85; }
+        .prize-box {
+            background: #ffd700; color: #222; display: inline-block;
+            padding: 5px 20px; border-radius: 30px; font-weight: 900; font-size: 18px; margin-bottom: 6px;
+        }
+        .refer-btn-banner {
+            background: white; color: #6a1b9a; border: none; padding: 8px 25px;
+            border-radius: 20px; font-weight: bold; font-size: 13px; cursor: pointer; display: block; margin: 0 auto;
+        }
+        .dots { display: flex; justify-content: center; gap: 4px; margin-top: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+        .dot { width: 5px; height: 5px; background: #d1c4e9; border-radius: 50%; transition: 0.3s; cursor: pointer; }
+        .dot.active { background: #7b1fa2; width: 14px; border-radius: 4px; }
+
+        /* Features Grid */
+        .features-grid { display: flex; justify-content: space-between; padding: 0 15px; gap: 10px; margin-bottom: 15px; }
+        .feature-item {
+            background: white; flex: 1; text-align: center; padding: 12px 5px;
+            border-radius: 14px; box-shadow: 0 2px 6px rgba(0,0,0,0.04); position: relative; cursor: pointer;
+        }
+        .feature-icon { font-size: 22px; margin-bottom: 5px; }
+        .feature-name { font-size: 11px; font-weight: 600; color: #333; }
+        .badge-new {
+            position: absolute; top: -6px; right: -4px; background: #ff3d00;
+            color: white; font-size: 9px; padding: 2px 6px; border-radius: 10px; font-weight: bold;
+        }
+        .container { padding: 0 15px; }
+        .section-title { margin: 15px 0 10px 0; font-size: 15px; font-weight: bold; color: #222; }
+        
+        .card {
+            background: white; padding: 15px; margin-bottom: 12px; border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: center;
+        }
+        .card-info h4 { margin: 0 0 3px 0; font-size: 15px; color: #111; }
+        .card-info p { margin: 0; font-size: 12px; color: #666; }
+        
+        .action-btn {
+            background-color: #4CAF50; color: white; border: none; padding: 9px 0; 
+            width: 95px; text-align: center; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px;
+            box-shadow: 0 2px 5px rgba(76, 175, 80, 0.3);
+        }
+
+        /* Games Grid Styles */
+        .games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
+        .game-card {
+            background: white; border-radius: 16px; padding: 12px; text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); cursor: pointer; transition: 0.2s;
+        }
+        .game-card:active { transform: scale(0.97); }
+        .game-img {
+            width: 100%; height: 90px; border-radius: 12px; object-fit: cover;
+            display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 8px;
+        }
+        .game-title { font-size: 14px; font-weight: bold; color: #111; margin: 0 0 2px 0; }
+        .game-cat { font-size: 11px; color: #666; margin: 0; }
+
+        /* Redeem Store Grid */
+        .redeem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-bottom: 20px; }
+        .redeem-card {
+            background: white; border-radius: 16px; padding: 15px; text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .redeem-logo { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
+        .redeem-price { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 10px; }
+        .redeem-btn {
+            background: #7b1fa2; color: white; border: none; padding: 8px;
+            border-radius: 20px; font-weight: bold; font-size: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
+        }
+
+        /* History Status Styles */
+        .history-card {
+            background: white; padding: 12px 15px; border-radius: 12px; margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: center;
+        }
+        .status-pending { background: #ff9800; color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; }
+        .status-success { background: #4CAF50; color: white; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; }
+
+        /* Modals with Close 'X' Button */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7); display: none; justify-content: center; align-items: center; z-index: 2000;
+        }
+        .modal-box {
+            background: white; width: 88%; max-width: 340px;
+            padding: 20px; border-radius: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .close-modal-btn {
+            position: absolute; top: 10px; right: 15px;
+            background: #eee; border: none; border-radius: 50%;
+            width: 30px; height: 30px; font-size: 16px; font-weight: bold;
+            cursor: pointer; color: #555; display: flex; align-items: center; justify-content: center;
+        }
+        .modal-box h3 { color: #7b1fa2; margin-top: 10px; }
+        .claim-popup-btn {
+            background: #4CAF50; color: white; border: none; padding: 10px 20px;
+            border-radius: 25px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px;
+        }
+        .scratch-container {
+            position: relative; width: 250px; height: 120px; margin: 15px auto;
+            background: #e0e0e0; border-radius: 10px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; color: #7b1fa2;
+        }
+        canvas { position: absolute; top: 0; left: 0; cursor: crosshair; }
+
+        /* CASINO STYLE SPIN WHEEL CSS */
+        .casino-spin-modal {
+            background: radial-gradient(circle, #2b0040 0%, #12001c 100%) !important;
+            border: 3px solid #ffd700;
+            color: white;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+        }
+        .spin-outer-ring {
+            position: relative; width: 240px; height: 240px; margin: 10px auto;
+            border-radius: 50%; padding: 6px; background: linear-gradient(135deg, #ffd700, #ff8f00, #ff3d00);
+            box-shadow: 0 0 25px rgba(255, 143, 0, 0.8); display: flex; align-items: center; justify-content: center;
+        }
+        .spin-container {
+            position: relative; width: 100%; height: 100%;
+            border-radius: 50%; background: conic-gradient(
+                #ff3d00 0deg 45deg, #ffeb3b 45deg 90deg, #4caf50 90deg 135deg, #03a9f4 135deg 180deg,
+                #9c27b0 180deg 225deg, #e91e63 225deg 270deg, #03a9f4 270deg 315deg, #8bc34a 315deg 360deg
+            );
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 3.5s cubic-bezier(0.15, 0.85, 0.35, 1);
+        }
+        .spin-center-hub {
+            position: absolute; width: 55px; height: 55px; background: #fff; border-radius: 50%; border: 4px solid #ffd700;
+            display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px; color: #7b1fa2; z-index: 5;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .spin-pointer-arrow {
+            position: absolute; top: -16px; left: calc(50% - 14px); width: 0; height: 0;
+            border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 28px solid #ff3d00; z-index: 10;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+        .page-content { padding: 15px; }
+        .page-content h2 { color: #7b1fa2; text-align: center; margin-bottom: 5px; }
+
+        .withdraw-box {
+            background: white; padding: 20px; border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left; margin-top: 15px;
+        }
+        .withdraw-box input {
+            width: 100%; padding: 12px; margin: 10px 0;
+            border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 14px;
+        }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; width: 100%; background: white;
+            display: flex; justify-content: space-around; padding: 8px 0; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 1000;
+        }
+        .nav-item { text-align: center; font-size: 10px; color: #888; cursor: pointer; }
+        .nav-item.active { color: #7b1fa2; font-weight: bold; }
+        .nav-icon { font-size: 18px; margin-bottom: 2px; display: block; }
+    </style>
+</head>
+<body>
+
+    <!-- LOGIN / REGISTER SCREEN -->
+    <div id="authScreen" style="display:none;">
+        <div class="auth-box">
+            <h2 id="authTitle">Eran Club App</h2>
+            <p id="authSubtitle">Login to continue earning</p>
+            
+            <div id="registerFields" style="display:none;">
+                <input type="text" id="regUsername" placeholder="Enter Username">
+            </div>
+            
+            <input type="tel" id="authMobile" placeholder="Enter Mobile Number" maxlength="10">
+            
+            <div id="otpFieldContainer" style="display:none; position:relative;">
+                <input type="text" id="authOtp" placeholder="Enter 4-Digit OTP">
+                <button type="button" onclick="sendOtp()" style="position:absolute; right:5px; top:12px; background:#7b1fa2; color:white; border:none; padding:6px 10px; border-radius:6px; font-size:11px; cursor:pointer;">Send OTP</button>
+            </div>
+
+            <input type="password" id="authPassword" placeholder="Enter Password">
+            
+            <button class="auth-btn" id="authSubmitBtn" onclick="handleAuth()">Login</button>
+            <div class="switch-auth" id="switchAuthText" onclick="toggleAuthMode()">Don't have an account? Register</div>
+        </div>
+    </div>
+
+    <!-- TOP PRO HEADER -->
+    <div class="top-header">
+        <div>
+            <p class="user-greeting">Hello,</p>
+            <h2 class="username" id="displayUsername">rajesh46</h2>
+        </div>
+        <div class="header-right">
+            <div class="gift-btn" onclick="showStandardPopup('Daily Bonus', 1, 0)">🎁</div>
+            <div class="coin-badge" onclick="switchTab('walletTab', document.getElementById('navWallet'))">
+                <div class="coin-icon-circle">R</div> 
+                <span id="coinCount">0</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOME TAB -->
+    <div id="homeTab" class="tab-pane active">
+        <!-- 10 CAROUSEL BANNERS -->
+        <div class="banner-container">
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="banner">
+                        <h3 style="color: #ffd700; font-size: 18px;">🏆 ERAN CLUB REFER CONTEST</h3>
+                        <p>16 September - 23 September 2026</p>
+                        <div class="prize-box">₹2,100</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">GRAND PRIZE</div>
+                        <button class="banner-btn refer-btn-banner" onclick="switchTab('referTab', document.getElementById('navRefer'))">REFER NOW</button>
+                    </div>
+                    <div class="banner" style="background: linear-gradient(135deg, #ff8f00, #e65100);">
+                        <h3>🚚 PLAY & WIN TRUCK GAME</h3>
+                        <p>Clear Traffic Fast & Earn Big Coins!</p>
+                        <div class="prize-box" style="background: #fff; color: #e65100;">PLAY NOW</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">SPECIAL REWARD</div>
+                        <button class="banner-btn refer-btn-banner" style="color:#e65100;" onclick="showGamePopup('Car Driving', 'https://html5games.com/Game/Car-Driving', 0)">START GAME</button>
+                    </div>
+                    <div class="banner" style="background: linear-gradient(135deg, #d81b60, #880e4f);">
+                        <h3>DIWALI MEGA EARNING BONANZA</h3>
+                        <p>Win Double Coins on All Tasks Today!</p>
+                        <div class="prize-box">₹5,000</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">SPECIAL REWARD</div>
+                        <button class="banner-btn refer-btn-banner" style="color:#d81b60;" onclick="showStandardPopup('Diwali Bonus', 1, 4)">CLAIM NOW</button>
+                    </div>
+                    <div class="banner" style="background: linear-gradient(135deg, #00897b, #004d40);">
+                        <h3>SURVEY CHAMPION LEAGUE</h3>
+                        <p>Complete 3 Surveys & Get Instant Cash</p>
+                        <div class="prize-box">₹1,500</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">DAILY CONTEST</div>
+                        <button class="banner-btn refer-btn-banner" style="color:#00897b;" onclick="switchTab('offersTab', document.getElementById('navOffers'))">START NOW</button>
+                    </div>
+                    <div class="banner" style="background: linear-gradient(135deg, #1565c0, #0d47a1);">
+                        <h3>WATCH & EARN UNLIMITED</h3>
+                        <p>Watch short videos and boost your wallet</p>
+                        <div class="prize-box">₹800</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">DAILY TASK</div>
+                        <button class="banner-btn refer-btn-banner" style="color:#1565c0;" onclick="showStandardPopup('Video Bonus', 1, 3)">WATCH NOW</button>
+                    </div>
+                    <div class="banner" style="background: linear-gradient(135deg, #2e7d32, #1b5e20);">
+                        <h3>SCRATCH CARD MANIA</h3>
+                        <p>Instant scratch cards loaded with coins</p>
+                        <div class="prize-box">₹2,000</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">INSTANT WIN</div>
+                        <button class="banner-btn refer-btn-banner" style="color:#2e7d32;" onclick="openScratchModal()">SCRATCH</button>
+                    </div>
+                    <div class="banner" style="background: linear-gradient(135deg, #6a1b9a, #ad1457);">
+                        <h3>WEEKLY REFERRAL LEADERBOARD</h3>
+                        <p>Invite top friends and lead the chart</p>
+                        <div class="prize-box">₹10,000</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">TOP PRIZE</div>
+                        <button class="banner-btn refer-btn-banner" style="color:#6a1b9a;" onclick="switchTab('referTab', document.getElementById('navRefer'))">INVITE</button>
+                    </div>
+                    <div class="banner" style="background: linear-gradient(135deg, #37474f, #212121);">
+                        <h3>INSTANT UPI WITHDRAWAL</h3>
+                        <p>Transfer earnings directly to your bank/Paytm</p>
+                        <div class="prize-box">₹500 MIN</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">FAST PAYOUT</div>
+                        <button class="banner-btn refer-btn-banner" style="color:#37474f;" onclick="switchTab('walletTab', document.getElementById('navWallet'))">REDEEM</button>
+                    </div>
+                    <div class="banner" style="background: linear-gradient(135deg, #e65100, #bf360c);">
+                        <h3>SPIN & WIN JACKPOT</h3>
+                        <p>Test your luck with daily lucky spins</p>
+                        <div class="prize-box">₹1,200</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">LUCKY DRAW</div>
+                        <button class="banner-btn refer-btn-banner" style="color:#e65100;" onclick="openSpinModal()">SPIN NOW</button>
+                    </div>
+                    <div class="banner" style="background: linear-gradient(135deg, #4a148c, #311b92);">
+                        <h3>NEW USER WELCOME BONUS</h3>
+                        <p>Claim your joining reward instantly</p>
+                        <div class="prize-box">₹100</div>
+                        <div style="font-size: 10px; margin-bottom: 8px; font-weight: bold;">FREE BONUS</div>
+                        <button class="banner-btn refer-btn-banner" style="color:#4a148c;" onclick="showStandardPopup('Welcome Bonus', 1, 0)">CLAIM</button>
+                    </div>
+                </div>
+            </div>
+            <div class="dots" id="bannerDots">
+                <div class="dot active" onclick="currentSlide(0)"></div>
+                <div class="dot" onclick="currentSlide(1)"></div>
+                <div class="dot" onclick="currentSlide(2)"></div>
+                <div class="dot" onclick="currentSlide(3)"></div>
+                <div class="dot" onclick="currentSlide(4)"></div>
+                <div class="dot" onclick="currentSlide(5)"></div>
+                <div class="dot" onclick="currentSlide(6)"></div>
+                <div class="dot" onclick="currentSlide(7)"></div>
+                <div class="dot" onclick="currentSlide(8)"></div>
+                <div class="dot" onclick="currentSlide(9)"></div>
+            </div>
+        </div>
+
+        <!-- FEATURES -->
+        <div class="features-grid" style="margin-top: 15px;">
+            <div class="feature-item" onclick="showStandardPopup('Prime Surveys', 1, 0)">
+                <span class="badge-new">New</span>
+                <div class="feature-icon">📝</div>
+                <div class="feature-name">Prime Surveys</div>
+            </div>
+            <div class="feature-item" onclick="showStandardPopup('Survey Rewards', 1, 1)">
+                <div class="feature-icon">📊</div>
+                <div class="feature-name">Survey Rewards</div>
+            </div>
+            <div class="feature-item" onclick="showStandardPopup('Play & Earn', 1, 2)">
+                <div class="feature-icon">⏰</div>
+                <div class="feature-name">Play & Earn</div>
+            </div>
+            <div class="feature-item" onclick="switchTab('gamesTab', document.getElementById('navGames'))">
+                <div class="feature-icon">🎲</div>
+                <div class="feature-name">Games</div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="section-title">🔥 Hot Offers & Tasks</div>
+            
+            <div class="card">
+                <div class="card-info">
+                    <h4>Daily Check-in</h4>
+                    <p>Claim free coin everyday</p>
+                </div>
+                <button class="action-btn" onclick="showStandardPopup('Daily Check-in', 1, 0)">Claim</button>
+            </div>
+
+            <div class="card">
+                <div class="card-info">
+                    <h4>Scratch & Win</h4>
+                    <p>Scratch card & win 1 coin</p>
+                </div>
+                <button class="action-btn" onclick="openScratchModal()">Scratch</button>
+            </div>
+
+            <div class="card" onclick="openSpinModal()" style="cursor:pointer;">
+                <div class="card-info">
+                    <h4>Spin the Wheel</h4>
+                    <p>Spin & test your luck</p>
+                </div>
+                <button class="action-btn">Spin</button>
+            </div>
+
+            <div class="section-title">👥 Referral Program</div>
+            <div class="card" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+                <div class="card-info">
+                    <h4>Invite Friends</h4>
+                    <p>Get 1 coin per invite</p>
+                </div>
+                <button class="action-btn" style="background-color: #2E7D32;" onclick="switchTab('referTab', document.getElementById('navRefer'))">Invite</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAMES TAB -->
+    <div id="gamesTab" class="tab-pane">
+        <div class="page-content">
+            <h2>🎮 Epic Play Games</h2>
+            <p style="text-align:center; font-size:13px; color:#666; margin-bottom: 15px;">Watch ad to unlock & play games instantly!</p>
+            
+            <div class="games-grid">
+                <div class="game-card" onclick="showGamePopup('Car Driving', 'https://html5games.com/Game/Car-Driving', 0)">
+                    <div class="game-img" style="background: #e3f2fd;">🏎️</div>
+                    <h4 class="game-title">Car Driving</h4>
+                    <p class="game-cat">Racing</p>
+                </div>
+                <div class="game-card" onclick="showGamePopup('Super Mario Bros', 'https://www.retrogames.cc/nes-games/super-mario-bros.html', 1)">
+                    <div class="game-img" style="background: #ffebee;">🍄</div>
+                    <h4 class="game-title">Mario Bros</h4>
+                    <p class="game-cat">Classic</p>
+                </div>
+                <div class="game-card" onclick="showGamePopup('Ludo Master', 'https://html5games.com/Game/Ludo-Master', 2)">
+                    <div class="game-img" style="background: #e8f5e9;">🎲</div>
+                    <h4 class="game-title">Ludo King</h4>
+                    <p class="game-cat">Board Game</p>
+                </div>
+                <div class="game-card" onclick="showGamePopup('Carrom Board', 'https://html5games.com/Game/Carrom', 3)">
+                    <div class="game-img" style="background: #fff3e0;">🎯</div>
+                    <h4 class="game-title">Carrom Pro</h4>
+                    <p class="game-cat">Board Game</p>
+                </div>
+                <div class="game-card" onclick="showGamePopup('Snake & Ladder', 'https://html5games.com/Game/Snake-And-Ladders', 4)">
+                    <div class="game-img" style="background: #f3e5f5;">🐍</div>
+                    <h4 class="game-title">Sap Sidi (Snake)</h4>
+                    <p class="game-cat">Classic</p>
+                </div>
+                <div class="game-card" onclick="showGamePopup('Cricket World Cup', 'https://html5games.com/Game/Cricket-Hero', 5)">
+                    <div class="game-img" style="background: #e0f2f1;">🏏</div>
+                    <h4 class="game-title">Cricket Hero</h4>
+                    <p class="game-cat">Sports</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OFFERS TAB -->
+    <div id="offersTab" class="tab-pane">
+        <div class="page-content">
+            <h2>🏷️ Exclusive Offers</h2>
+            <p style="text-align:center; font-size:13px; color:#666;">Complete high-paying tasks here.</p>
+            <div class="card">
+                <div class="card-info">
+                    <h4>TaskBucks Offer</h4>
+                    <p>Download & register</p>
+                </div>
+                <button class="action-btn" onclick="showStandardPopup('TaskBucks Offer', 1, 4)">Earn 1</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- REFER TAB -->
+    <div id="referTab" class="tab-pane">
+        <div class="page-content" style="text-align: center;">
+            <h2>👥 Refer & Earn</h2>
+            <p style="font-size:13px; color:#666;">Invite your friends and earn rewards instantly!</p>
+            
+            <div style="background: linear-gradient(135deg, #7b1fa2, #4a148c); border-radius: 20px; padding: 20px; color: white; margin: 15px 0; box-shadow: 0 6px 15px rgba(123,31,162,0.3);">
+                <div style="font-size: 55px; margin-bottom: 5px;">👫🎉</div>
+                <h3 style="margin: 5px 0; color: #ffd700;">Earn ₹10 Per Friend</h3>
+                <p style="font-size: 12px; opacity: 0.9; margin: 0;">Share your unique invite code and build your team.</p>
+            </div>
+
+            <div class="card" style="justify-content: center; background: white; border: 2px dashed #7b1fa2; margin-top:10px;">
+                <div style="text-align: center;">
+                    <p style="font-size: 11px; color:#666; margin:0 0 3px 0;">Your Referral Code</p>
+                    <p style="font-size: 20px; font-weight: bold; color: #7b1fa2; margin:0;" id="userRefCode">RAJESH2026</p>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; gap: 15px; margin: 15px 0;">
+                <div onclick="shareAppSocial('whatsapp')" style="background:#25D366; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,0.2);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.81 2.42a8.225 8.225 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.46 0-2.88-.38-4.12-1.11l-.3-.18-3.09.81.82-3.01-.19-.31a8.15 8.15 0 0 1-1.25-4.34c0-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.37.06-.57.28-.21.22-.79.77-.79 1.88s.81 2.18.92 2.33c.11.15 1.58 2.41 3.84 3.38 2.26.97 2.26.65 2.67.61.41-.04 1.32-.54 1.51-1.07.19-.53.19-.98.13-1.07-.06-.09-.22-.15-.46-.27s-1.32-.65-1.53-.73c-.21-.08-.36-.12-.51.12-.15.24-.58.73-.72.88-.14.15-.28.17-.52.05-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.34-1.67-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.57-1.38-.79-1.89-.21-.49-.43-.42-.59-.43h-.5Z"/></svg>
+                </div>
+                <div onclick="shareAppSocial('facebook')" style="background:#1877F2; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,0.2);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </div>
+                <div onclick="shareAppSocial('telegram')" style="background:#229ED9; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,0.2);">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27 0-.12.07-1.99 1.25-5.62 3.69-.53.36-1.01.54-1.44.53-.47-.02-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.05-.78 4.1-1.79 6.84-2.97 8.21-3.54 3.91-1.63 4.72-1.91 5.25-1.92.12 0 .39.03.56.17.14.12.18.28.2.4-.01.07.01.2 0 .33Z"/></svg>
+                </div>
+                <div onclick="shareAppSocial('copy')" style="background:#7b1fa2; width:45px; height:45px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,0.2);">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                </div>
+            </div>
+
+            <button class="action-btn" style="width: 100%; padding: 12px; border-radius: 25px; margin-top: 5px; background: #7b1fa2;" onclick="shareAppSocial('native')">Share Invite Link</button>
+        </div>
+    </div>
+
+    <!-- WALLET TAB -->
+    <div id="walletTab" class="tab-pane">
+        <div class="page-content">
+            <h2>👛 Redeem Store</h2>
+            
+            <!-- DYNAMIC WITHDRAW BANNER (RED IF <100, GREEN IF >=100) -->
+            <div style="background: linear-gradient(135deg, #ff8f00, #e65100); border-radius: 16px; padding: 15px 20px; color: white; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; box-shadow: 0 6px 15px rgba(230,81,0,0.35);">
+                <div>
+                    <p style="margin:0; font-size: 11px; opacity: 0.9; font-weight: bold; letter-spacing: 0.5px;">YOUR BALANCE</p>
+                    <h2 style="margin: 4px 0 10px 0; font-size: 28px; color: #fff; font-weight: 900;">🪙 <span id="walletCoinCount">0</span></h2>
+                    <button id="mainWithdrawBtn" onclick="checkWithdrawAndAskDetails()" style="background: #e74c3c; color: white; border: none; padding: 8px 22px; border-radius: 20px; font-weight: bold; font-size: 13px; cursor: pointer; box-shadow: 0 3px 8px rgba(0,0,0,0.2);">WITHDRAW</button>
+                </div>
+                <div style="font-size: 50px;">💰</div>
+            </div>
+
+            <div class="section-title" style="margin-top:0;">Available Withdrawal Options</div>
+            
+            <div class="redeem-grid">
+                <div class="redeem-card">
+                    <div>
+                        <div class="redeem-logo" style="color: #003087;">PayPal</div>
+                        <div class="redeem-price">PayPal Credit<br><strong>$0.3</strong></div>
+                    </div>
+                    <button class="redeem-btn" onclick="redeemReward('PayPal $0.3', 10)">🪙 10 Coins</button>
+                </div>
+                <div class="redeem-card">
+                    <div>
+                        <div class="redeem-logo" style="color: #ff9800;">UPI / Paytm</div>
+                        <div class="redeem-price">Instant UPI Credit<br><strong>₹5</strong></div>
+                    </div>
+                    <button class="redeem-btn" onclick="redeemReward('₹5 UPI Cash', 5)">🪙 5 Coins</button>
+                </div>
+                <div class="redeem-card">
+                    <div>
+                        <div class="redeem-logo" style="color: #ff9900;">amazon pay</div>
+                        <div class="redeem-price">Amazon GiftCard<br><strong>₹5</strong></div>
+                    </div>
+                    <button class="redeem-btn" onclick="redeemReward('Amazon ₹5', 5)">🪙 5 Coins</button>
+                </div>
+                <div class="redeem-card">
+                    <div>
+                        <div class="redeem-logo" style="color: #4285F4;">Google Play</div>
+                        <div class="redeem-price">Google Play Code<br><strong>₹10</strong></div>
+                    </div>
+                    <button class="redeem-btn" onclick="redeemReward('Google Play ₹10', 10)">🪙 10 Coins</button>
+                </div>
+            </div>
+
+            <div class="withdraw-box">
+                <h4 style="margin-top:0; color:#7b1fa2;">Custom UPI / Paytm Payout</h4>
+                <input type="text" id="upiInput" placeholder="Enter UPI ID or Paytm Number">
+                <input type="number" id="amountInput" placeholder="Enter Amount (Min ₹100)">
+                <button class="action-btn" style="width: 100%; margin-top: 5px; background: #7b1fa2;" onclick="processWithdrawal()">Withdraw via WhatsApp</button>
+            </div>
+
+            <!-- WITHDRAWAL HISTORY SECTION -->
+            <div class="section-title" style="margin-top:20px;">📜 Withdrawal History</div>
+            <div id="historyContainer">
+                <p style="font-size:12px; color:#777; text-align:center;">No withdrawal history yet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div id="settingsTab" class="tab-pane">
+        <div class="page-content">
+            <h2>⚙️ Settings & Profile</h2>
+            <div class="card" style="margin-top:15px;">
+                <div class="card-info">
+                    <h4>Username</h4>
+                    <p id="settingsUsername">rajesh46</p>
+                </div>
+            </div>
+            <div class="card" onclick="logoutUser()">
+                <div class="card-info">
+                    <h4 style="color: #e74c3c;">Log Out</h4>
+                    <p>Exit account</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALS WITH CLOSE 'X' BUTTON -->
+    <div id="standardModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="close-modal-btn" onclick="closeModal('standardModal')">×</button>
+            <h3 id="stdTitle">Task Completed!</h3>
+            <p id="stdDesc">Claim your reward.</p>
+            <button class="claim-popup-btn" id="stdClaimBtn" onclick="watchAdAndEarn()">Claim & Open Ad (Watch)</button>
+        </div>
+    </div>
+
+    <!-- GAME AD POPUP MODAL -->
+    <div id="gameModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="close-modal-btn" onclick="closeModal('gameModal')">×</button>
+            <h3 id="gameModalTitle">Play Game</h3>
+            <p id="gameModalDesc">Watch ad for 5 seconds to unlock & play game!</p>
+            <button class="claim-popup-btn" id="gameClaimBtn" onclick="watchAdAndPlayGame()">Watch Ad & Play Game</button>
+        </div>
+    </div>
+
+    <div id="scratchModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="close-modal-btn" onclick="closeModal('scratchModal')">×</button>
+            <h3>Scratch & Win</h3>
+            <p>Rub below to reveal your prize!</p>
+            <div class="scratch-container">
+                <span id="scratchRewardText">+1 Coin</span>
+                <canvas id="scratchCanvas" width="250" height="120"></canvas>
+            </div>
+            <button class="claim-popup-btn" id="scratchClaimBtn" style="display:none;" onclick="watchAdAndEarnScratch()">Claim & Open Ad</button>
+        </div>
+    </div>
+
+    <!-- CASINO STYLE SPIN WHEEL MODAL -->
+    <div id="spinModal" class="modal-overlay">
+        <div class="modal-box casino-spin-modal">
+            <button class="close-modal-btn" onclick="closeModal('spinModal')" style="background:#ffd700; color:#12001c;">×</button>
+            <h3 style="color: #ffd700; margin: 5px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">🎡 Spin & Win Cash</h3>
+            <p style="font-size: 11px; opacity: 0.9; margin-bottom: 8px;">Spin the wheel to win big rewards!</p>
+            
+            <div class="spin-outer-ring">
+                <div class="spin-pointer-arrow"></div>
+                <div class="spin-container" id="spinWheel">
+                    <div class="spin-center-hub">SPIN</div>
+                </div>
+            </div>
+
+            <button class="claim-popup-btn" id="spinBtn" style="background: linear-gradient(135deg, #4CAF50, #2E7D32); color: white; font-weight: 900; margin-top: 12px; border-radius: 25px; font-size: 14px; box-shadow: 0 4px 10px rgba(76,175,80,0.4);" onclick="startSpinAndWatchAd()">SPIN & WATCH AD</button>
+        </div>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <div class="bottom-nav">
+        <div class="nav-item active" id="navHome" onclick="switchTab('homeTab', this)"><span class="nav-icon">🏠</span>Home</div>
+        <div class="nav-item" id="navGames" onclick="switchTab('gamesTab', this)"><span class="nav-icon">🎮</span>Games</div>
+        <div class="nav-item" id="navRefer" onclick="switchTab('referTab', this)"><span class="nav-icon">👥</span>Refer</div>
+        <div class="nav-item" id="navWallet" onclick="switchTab('walletTab', this)"><span class="nav-icon">👛</span>Wallet</div>
+        <div class="nav-item" id="navSettings" onclick="switchTab('settingsTab', this)"><span class="nav-icon">⚙️</span>Settings</div>
+    </div>
+
+    <script>
+        const adLinks = [
+            "https://environmenttalentrabble.com/cng9ekur?key=704d9ee408dfa3cbeac83a7bc6411c4b",
+            "https://environmenttalentrabble.com/r8m3b3e68q?key=c9ad3d9e815ce7b4b5212bc82e30a79d",
+            "https://environmenttalentrabble.com/tk3vn8t6?key=e8899d716848a1a083e61660ed42da9c",
+            "https://environmenttalentrabble.com/npirbnbm?key=ccf15150fcaef875e128ec979bc91783",
+            "https://environmenttalentrabble.com/avpi4m44?key=33c1c3e31af11812cff07bcd0542eec6",
+            "https://environmenttalentrabble.com/agb5d786?key=4ba316f640b1b92f690a89b8b4bb8e0f"
+        ];
+
+        let coins = parseInt(localStorage.getItem('eran_coins')) || 0;
+        let selectedLinkIndex = 0;
+        let currentGameUrl = "";
+        let withdrawalHistory = JSON.parse(localStorage.getItem('eran_history')) || [];
+        let currentUser = localStorage.getItem('eran_user') || "rajesh46";
+        let generatedOtp = "";
+
+        updateCoinUI();
+        updateHistoryUI();
+
+        if (localStorage.getItem('eran_logged_in') === 'true') {
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('displayUsername').innerText = currentUser;
+            document.getElementById('settingsUsername').innerText = currentUser;
+            document.getElementById('userRefCode').innerText = currentUser.toUpperCase() + "2026";
+        } else {
+            document.getElementById('authScreen').style.display = 'flex';
+        }
+
+        function updateCoinUI() {
+            document.getElementById('coinCount').innerText = coins;
+            document.getElementById('walletCoinCount').innerText = coins;
+            
+            let withdrawBtn = document.getElementById('mainWithdrawBtn');
+            if (coins >= 100) {
+                withdrawBtn.style.backgroundColor = "#4CAF50"; // Green when >= 100
+                withdrawBtn.innerText = "WITHDRAW";
+            } else {
+                withdrawBtn.style.backgroundColor = "#e74c3c"; // Red when < 100
+                withdrawBtn.innerText = "MIN ₹100 REQ";
+            }
+        }
+
+        function checkWithdrawAndAskDetails() {
+            if (coins < 100) {
+                alert("⚠️ Minimum balance of 100 coins/rupees required to withdraw! Earn more through games and tasks.");
+                return;
+            }
+            let upiDetails = prompt("Enter your UPI ID or Paytm Number for withdrawal:");
+            if (upiDetails && upiDetails.trim() !== "") {
+                withdrawalHistory.unshift({ title: '₹' + coins + ' Instant Payout', target: upiDetails, status: 'Pending' });
+                localStorage.setItem('eran_history', JSON.stringify(withdrawalHistory));
+                updateHistoryUI();
+
+                let myWhatsAppNumber = "917096549547";
+                let message = "Hello, I want to withdraw ₹" + coins + " from Eran Club App. My UPI/Paytm Details: " + upiDetails + " (User: " + currentUser + ")";
+                let whatsappURL = "https://wa.me/" + myWhatsAppNumber + "?text=" + encodeURIComponent(message);
+                window.open(whatsappURL, '_blank');
+            } else {
+                alert("⚠️ Withdrawal cancelled. Please provide valid details.");
+            }
+        }
+
+        let slideIndex = 0;
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('#bannerDots .dot');
+
+        function showSlide(index) {
+            slideIndex = index;
+            if (slideIndex >= dots.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = dots.length - 1;
+            track.style.transform = `translateX(-${slideIndex * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === slideIndex);
+            });
+        }
+
+        function currentSlide(index) { showSlide(index); }
+
+        setInterval(() => {
+            slideIndex++;
+            showSlide(slideIndex);
+        }, 3500);
+
+        function showGamePopup(gameName, gameUrl, linkIndex) {
+            currentGameUrl = gameUrl;
+            selectedLinkIndex = linkIndex % adLinks.length;
+            document.getElementById('gameModalTitle').innerText = "Play " + gameName;
+            document.getElementById('gameModalDesc').innerText = "Watch ad for 5 seconds to unlock & play!";
+            document.getElementById('gameModal').style.display = 'flex';
+        }
+
+        function watchAdAndPlayGame() {
+            let btn = document.getElementById('gameClaimBtn');
+            btn.disabled = true;
+            let timeLeft = 5;
+            btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
+            window.open(adLinks[selectedLinkIndex], '_blank');
+
+            let timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
+                } else {
+                    clearInterval(timer);
+                    coins += 1;
+                    localStorage.setItem('eran_coins', coins);
+                    updateCoinUI();
+                    alert("🎉 Ad Complete! +1 Coin added. Opening game now!");
+                    btn.disabled = false;
+                    btn.innerText = "Watch Ad & Play Game";
+                    closeModal('gameModal');
+                    window.open(currentGameUrl, '_blank');
+                }
+            }, 1000);
+        }
+
+        function shareAppSocial(platform) {
+            let refCode = document.getElementById('userRefCode').innerText;
+            let shareText = "🔥 Eran Club App par aao, games khelo aur roz free coins jeeto! Mera referral code use karo: " + refCode;
+            
+            if (platform === 'whatsapp') {
+                window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText), '_blank');
+            } else if (platform === 'facebook') {
+                window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent("https://eranclub.app"), '_blank');
+            } else if (platform === 'telegram') {
+                window.open("https://t.me/share/url?url=" + encodeURIComponent("https://eranclub.app") + "&text=" + encodeURIComponent(shareText), '_blank');
+            } else {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Eran Club App',
+                        text: shareText,
+                        url: 'https://eranclub.app',
+                    }).catch(() => {});
+                } else {
+                    navigator.clipboard.writeText(shareText);
+                    alert("🔗 Referral link copied to clipboard!");
+                }
+            }
+        }
+
+        function toggleAuthMode() {
+            let isReg = document.getElementById('registerFields').style.display === 'block';
+            if (!isReg) {
+                document.getElementById('authTitle').innerText = "Register Account";
+                document.getElementById('authSubtitle').innerText = "Create a new Eran Club account";
+                document.getElementById('registerFields').style.display = 'block';
+                document.getElementById('otpFieldContainer').style.display = 'block';
+                document.getElementById('authSubmitBtn').innerText = "Verify & Register";
+                document.getElementById('switchAuthText').innerText = "Already have an account? Login";
+            } else {
+                document.getElementById('authTitle').innerText = "Eran Club App";
+                document.getElementById('authSubtitle').innerText = "Login to continue earning";
+                document.getElementById('registerFields').style.display = 'none';
+                document.getElementById('otpFieldContainer').style.display = 'none';
+                document.getElementById('authSubmitBtn').innerText = "Login";
+                document.getElementById('switchAuthText').innerText = "Don't have an account? Register";
+            }
+        }
+
+        function sendOtp() {
+            let mobile = document.getElementById('authMobile').value.trim();
+            if (mobile.length !== 10) {
+                alert("⚠️ Please enter a valid 10-digit mobile number first!");
+                return;
+            }
+            generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
+            alert("🔐 Your OTP is: " + generatedOtp + " (Demo OTP)");
+        }
+
+        function handleAuth() {
+            let mobile = document.getElementById('authMobile').value.trim();
+            let pass = document.getElementById('authPassword').value.trim();
+            let isReg = document.getElementById('registerFields').style.display === 'block';
+
+            if (mobile.length !== 10 || pass === "") {
+                alert("⚠️ Please enter valid 10-digit mobile number and password!");
+                return;
+            }
+
+            let savedUserPass = localStorage.getItem('user_pass_' + mobile);
+
+            if (isReg) {
+                let username = document.getElementById('regUsername').value.trim();
+                if (username === "") {
+                    alert("⚠️ Please enter a username!");
+                    return;
+                }
+                if (savedUserPass !== null) {
+                    alert("⚠️ This mobile number is already registered! Please Login.");
+                    return;
+                }
+                let otpInput = document.getElementById('authOtp').value.trim();
+                if (otpInput === "" || otpInput !== generatedOtp) {
+                    alert("❌ Invalid OTP! Please click 'Send OTP' and enter the correct code.");
+                    return;
+                }
+                localStorage.setItem('user_pass_' + mobile, pass);
+                localStorage.setItem('user_name_' + mobile, username);
+                alert("🎉 Registration Successful! Please Login.");
+                toggleAuthMode();
+                return;
+            }
+
+            if (savedUserPass === null) {
+                alert("❌ Mobile number not found! Please Register first.");
+                return;
+            }
+            if (savedUserPass !== pass) {
+                alert("❌ Incorrect password! Please try again.");
+                return;
+            }
+
+            currentUser = localStorage.getItem('user_name_' + mobile) || mobile;
+            localStorage.setItem('eran_user', currentUser);
+            localStorage.setItem('eran_logged_in', 'true');
+
+            document.getElementById('displayUsername').innerText = currentUser;
+            document.getElementById('settingsUsername').innerText = currentUser;
+            document.getElementById('userRefCode').innerText = currentUser.toUpperCase() + "2026";
+            document.getElementById('authScreen').style.display = 'none';
+            alert("✅ Login Successful!");
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('eran_logged_in');
+            document.getElementById('authMobile').value = "";
+            document.getElementById('authPassword').value = "";
+            document.getElementById('authOtp').value = "";
+            document.getElementById('regUsername').value = "";
+            document.getElementById('authScreen').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function showStandardPopup(taskName, rewardAmount, linkIndex) {
+            selectedLinkIndex = linkIndex % adLinks.length;
+            document.getElementById('stdTitle').innerText = taskName;
+            document.getElementById('stdDesc').innerText = "Watch ad for 5 seconds to earn 1 coin!";
+            document.getElementById('standardModal').style.display = 'flex';
+        }
+
+        function watchAdAndEarn() {
+            let btn = document.getElementById('stdClaimBtn');
+            btn.disabled = true;
+            let timeLeft = 5;
+            btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
+            window.open(adLinks[selectedLinkIndex], '_blank');
+
+            let timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
+                } else {
+                    clearInterval(timer);
+                    coins += 1;
+                    localStorage.setItem('eran_coins', coins);
+                    updateCoinUI();
+                    alert("🎉 Success! 1 Coin added to your wallet.");
+                    btn.disabled = false;
+                    btn.innerText = "Claim & Open Ad (Watch)";
+                    closeModal('standardModal');
+                }
+            }, 1000);
+        }
+
+        function openScratchModal() {
+            selectedLinkIndex = 1;
+            document.getElementById('scratchClaimBtn').style.display = 'none';
+            document.getElementById('scratchModal').style.display = 'flex';
+            initScratchCanvas();
+        }
+
+        function initScratchCanvas() {
+            const canvas = document.getElementById('scratchCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#b0bec5';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#37474f";
+            ctx.fillText("Scratch Here", 80, 65);
+
+            let isDrawing = false;
+            function scratch(e) {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || e.touches[0].clientX) - rect.left;
+                const y = (e.clientY || e.touches[0].clientY) - rect.top;
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 20, 0, Math.PI * 2, false);
+                ctx.fill();
+                checkScratchProgress(ctx, canvas.width, canvas.height);
+            }
+
+            canvas.onmousedown = () => isDrawing = true;
+            canvas.onmousemove = scratch;
+            window.onmouseup = () => isDrawing = false;
+            canvas.ontouchstart = () => isDrawing = true;
+            canvas.ontouchmove = scratch;
+            canvas.ontouchend = () => isDrawing = false;
+        }
+
+        function checkScratchProgress(ctx, width, height) {
+            const imageData = ctx.getImageData(0, 0, width, height);
+            let cleared = 0;
+            for (let i = 3; i < imageData.data.length; i += 4) {
+                if (imageData.data[i] === 0) cleared++;
+            }
+            if (cleared > (width * height) / 3) {
+                document.getElementById('scratchClaimBtn').style.display = 'block';
+            }
+        }
+
+        function watchAdAndEarnScratch() {
+            let btn = document.getElementById('scratchClaimBtn');
+            btn.disabled = true;
+            let timeLeft = 5;
+            btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
+            window.open(adLinks[selectedLinkIndex], '_blank');
+
+            let timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
+                } else {
+                    clearInterval(timer);
+                    coins += 1;
+                    localStorage.setItem('eran_coins', coins);
+                    updateCoinUI();
+                    alert("🎉 Success! 1 Coin added to your wallet.");
+                    btn.disabled = false;
+                    closeModal('scratchModal');
+                }
+            }, 1000);
+        }
+
+        function openSpinModal() {
+            selectedLinkIndex = 2;
+            document.getElementById('spinBtn').disabled = false;
+            document.getElementById('spinBtn').innerText = "SPIN & WATCH AD";
+            document.getElementById('spinWheel').style.transform = "rotate(0deg)";
+            document.getElementById('spinModal').style.display = 'flex';
+        }
+
+        function startSpinAndWatchAd() {
+            const wheel = document.getElementById('spinWheel');
+            let btn = document.getElementById('spinBtn');
+            btn.disabled = true;
+            
+            wheel.style.transform = "rotate(1800deg)";
+            
+            let timeLeft = 5;
+            btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
+            window.open(adLinks[selectedLinkIndex], '_blank');
+
+            let timer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    btn.innerText = `⏳ Watching Ad... (${timeLeft}s)`;
+                } else {
+                    clearInterval(timer);
+                    coins += 1;
+                    localStorage.setItem('eran_coins', coins);
+                    updateCoinUI();
+                    alert("🎉 Spin Successful! +1 Coin added to your wallet.");
+                    btn.disabled = false;
+                    btn.innerText = "SPIN & WATCH AD";
+                    closeModal('spinModal');
+                }
+            }, 1000);
+        }
+
+        function updateHistoryUI() {
+            let container = document.getElementById('historyContainer');
+            if (withdrawalHistory.length === 0) {
+                container.innerHTML = `<p style="font-size:12px; color:#777; text-align:center;">No withdrawal history yet.</p>`;
+                return;
+            }
+            let html = '';
+            withdrawalHistory.forEach((item, index) => {
+                let statusBadge = item.status === 'Pending' 
+                    ? `<span class="status-pending">Pending</span> <button onclick="markSuccess(${index})" style="background:#4CAF50;color:white;border:none;padding:2px 6px;border-radius:4px;font-size:10px;cursor:pointer;margin-left:5px;">Mark Paid</button>` 
+                    : `<span class="status-success">Successful</span>`;
+                
+                html += `
+                    <div class="history-card">
+                        <div>
+                            <div style="font-weight:bold; font-size:14px;">${item.title}</div>
+                            <div style="font-size:11px; color:#666;">Target: ${item.target}</div>
+                        </div>
+                        <div>${statusBadge}</div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        function markSuccess(index) {
+            withdrawalHistory[index].status = 'Successful';
+            localStorage.setItem('eran_history', JSON.stringify(withdrawalHistory));
+            updateHistoryUI();
+        }
+
+        function redeemReward(itemName, requiredCoins) {
+            if (coins < requiredCoins) {
+                alert('❌ Insufficient coins! Earn more coins to redeem ' + itemName + '.');
+                return;
+            }
+            coins -= requiredCoins;
+            localStorage.setItem('eran_coins', coins);
+            updateCoinUI();
+            
+            withdrawalHistory.unshift({ title: itemName, target: 'PayPal/GiftCard', status: 'Pending' });
+            localStorage.setItem('eran_history', JSON.stringify(withdrawalHistory));
+            updateHistoryUI();
+
+            let myWhatsAppNumber = "917096549547";
+            let message = "Hello, I want to redeem " + itemName + " from Eran Club App. My username is " + currentUser + ".";
+            let whatsappURL = "https://wa.me/" + myWhatsAppNumber + "?text=" + encodeURIComponent(message);
+            window.open(whatsappURL, '_blank');
+        }
+
+        function processWithdrawal() {
+            let upi = document.getElementById('upiInput').value;
+            let amt = document.getElementById('amountInput').value;
+            if(upi === "") { alert('⚠️ Please enter Paytm/UPI ID!'); return; }
+            if(amt < 100) { alert('⚠️ Minimum withdrawal amount is ₹100!'); return; }
+            
+            withdrawalHistory.unshift({ title: '₹' + amt + ' UPI Cash', target: upi, status: 'Pending' });
+            localStorage.setItem('eran_history', JSON.stringify(withdrawalHistory));
+            updateHistoryUI();
+
+            let myWhatsAppNumber = "917096549547";
+            let message = "Hello, I want to withdraw ₹" + amt + " from Eran Club App. My UPI/Paytm ID is: " + upi + " (User: " + currentUser + ")";
+            let whatsappURL = "https://wa.me/" + myWhatsAppNumber + "?text=" + encodeURIComponent(message);
+            window.open(whatsappURL, '_blank');
+        }
+
+        function switchTab(tabId, element) {
+            let panes = document.getElementsByClassName('tab-pane');
+            for (let i = 0; i < panes.length; i++) panes[i].classList.remove('active');
+            document.getElementById(tabId).classList.add('active');
+            let navItems = document.getElementsByClassName('nav-item');
+            for (let i = 0; i < navItems.length; i++) navItems[i].classList.remove('active');
+            if (element) element.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
