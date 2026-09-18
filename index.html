@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eran Club App - Ultimate Pro</title>
-    <!-- Note: Ad script is removed from Auth screen, loaded only inside app tasks -->
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -783,7 +782,7 @@
 
         function shareAppSocial(platform) {
             let refCode = document.getElementById('userRefCode').innerText;
-            let shareText = "🔥 Eran Club App par aao, games khelo aur roz free coins jeeto! Mera referral code use karo: " + refCode;
+            let shareText = "🔥 Eran Club App par aao, games khelo aur roz free coins jeeto! Mera referral code use karo: " + refCode + " - Join here: https://eranclub.app";
             
             if (platform === 'whatsapp') {
                 window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(shareText), '_blank');
@@ -799,8 +798,8 @@
                         url: 'https://eranclub.app',
                     }).catch(() => {});
                 } else {
-                    navigator.clipboard.writeText(shareText);
-                    alert("🔗 Referral link copied to clipboard!");
+                    navigator.clipboard.writeText("https://eranclub.app");
+                    alert("🔗 Clean app link copied to clipboard: https://eranclub.app");
                 }
             }
         }
@@ -940,7 +939,7 @@
         }
 
         function initScratchCanvas() {
-            const canvas = Document.getElementById('scratchCanvas');
+            const canvas = document.getElementById('scratchCanvas');
             const ctx = canvas.getContext('2d');
             ctx.fillStyle = '#b0bec5';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
